@@ -75,7 +75,9 @@ Obsahuje služby pro:
     \item Ověření autentičnosti, integrity a důvěrnosti přijaté informace.
 \end{enumerate}
 
-\section{Vysvětlete význam pojmů souvisejících s modely hrozeb: Destruction, Corruption, Removal, Disclosure, Interruption.}
+\section{Vysvětlete význam pojmů ss kodama na steam ￼
+[12:42 PM]
+přehodnocuju elgouvisejících s modely hrozeb: Destruction, Corruption, Removal, Disclosure, Interruption.}
 
 \begin{multicols}{2}
 \noindent \textbf{Destruction} (útok na dostupnost) zničení dat či síťových zdrojů.
@@ -98,13 +100,13 @@ Obsahuje služby pro:
 
 Funkce, která z libovolně dlouhého vstupu M vytvoří výstup o konstantní délce.
 
-Požadavky jsou jednocestnost (nezle z hashe vypočítat původní zprávu) a bezkoliznost (je těžké najít dvě zprávy, které by měli stejný hash)
+Požadavky jsou jednocestnost (nelze z hashe vypočítat původní zprávu) a bezkoliznost (je těžké najít dvě zprávy, které by měly stejný hash)
 
 Odolnost proti kolizím:
 \begin{itemize}
     \item Kolize prvního řádu -- nalezení vzoru
-    \item Kolize druhého řádu -- nalezení druhé zprávy, aby měli stejný hash jako první
-    \item Odolnost proti kolizím -- nalezení dvou různých zpráv, aby měli stejný hash (neznáme ani 1 zprávu)
+    \item Kolize druhého řádu -- nalezení druhé zprávy, aby měly stejný hash jako první
+    \item Odolnost proti kolizím -- nalezení dvou různých zpráv, aby měly stejný hash (neznáme ani 1 zprávu)
 \end{itemize}
 
 Použití -- digitální podpisy, kontrola integrity, pro uložení hesel, uložení klíčů, prokázání autorství\dots
@@ -296,7 +298,7 @@ Autor a podepisující jsou různí s tím že podepisující nezná obsah zprá
     \item Platí $s = (mr^e)^dr^{-1}\equiv m^d \mod n$
 \end{enumerate}
 
-\section{Známe číslo c,z,m a hledáme číslo e v následujícím vztahu: $c\equiv z^e (\mod m)$. O jaký matematický problém jde? Proč se jedná o matematický problém? O tento problém se opírá bezpečnost mnoha kryptografických systémů, uveďte alespoň jeden.}
+\section{Známe číslo c,z,m a hledáme číslo e v následujícím vztahu: \(c\equiv z^e (\mod m)\). O jaký matematický problém jde? Proč se jedná o matematický problém? O tento problém se opírá bezpečnost mnoha kryptografických systémů, uveďte alespoň jeden.}
 
 Jedná se o problém diskrétního logaritmu. Například DH, elgamal, DSA. O problém se jedná jelikož je není nalezeno řešení v polynomiálním čase, takže pro velká čísla je výpočetně zdlouhavý (komplexita O($n^3$)).
 
