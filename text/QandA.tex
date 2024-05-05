@@ -194,7 +194,7 @@ TODO
 \textbf{COW} -- Bity se kódují do koherentních pulzů. Při odposlechu se bity jednoduše naruší.
 
 \textbf{Kvantový přenos informace} --  Využití pro distribuci šifrovacího klíče, náhrada asymetrického systému.
- 
+
 \section{Vysvětlete, co je digitální podpis, jaké jsou na něho kladené požadavky a jakým způsobem se používá v součinnosti s hašovací funkcí.}
 
 Digitální podpis je podpis vytvořen za pomoci kryptografických prostředků. Je založen na symetrických i asymetrických algoritmech. Má stejné požadavky jako ruční podpis (nezfalšovatelnost, nepřenosný, dokument nelze změnit, podpis nelze popřít). Digitální podpis je hash zašifrované zprávy soukromým klíčem podepisovatele. 
@@ -227,8 +227,6 @@ Zdroj času musí být důvěryhodný tj. že musí být například synchronizo
 \textbf{Elektronická pečeť} -- Data v elektronické podobě, která jsou připojena k jiným datům v elektronické podobě nebo jsou s nimi logicky spojena s cílem zaručit původ a integritu.
 
 \textbf{Elektronické časové razítko} -- Služba poskytována certifikační autoritou, umožnující prokázat daný dokument v čase.
-
-
 
 \section{Znázorněte, popište princip činnosti asymetrického kryptosystému McEliece.}
 
@@ -285,7 +283,7 @@ Zpráva \textit{m} byla zašifrována 3 různými klíči jako $c_i = m^3 \mod n
 Ze šifrovaných textů $c_i$ lze vypočítat \textit{c}, jako $c \equiv c_i \mod n_i \Rightarrow m^3 \equiv c(\mod n_1n_2n_3)$. Jelikož $m < n_i$ je $m^3 < n_1n_2n_3$.
 
 Otevřený text spočítáme jako $m = \sqrt[3]{c}$
- 
+
 \section{Slepý podpis na základě RSA: jak se vytváří, k čemu slouží?}
 
 Autor a podepisující jsou různí s tím že podepisující nezná obsah zprávy. Pokud podepisující narazí na odtajněnou podepsanou zprávu, nesmí poznat, kdy a komu ji podepsal. Používá se k elektronickým volbám, elektronickým mincím. 
@@ -297,15 +295,6 @@ Autor a podepisující jsou různí s tím že podepisující nezná obsah zprá
     \item Spočítáme $s = s'r^{-1} \mod n$
     \item Platí $s = (mr^e)^dr^{-1}\equiv m^d \mod n$
 \end{enumerate}
-
-
-\section{Načrtněte a popište strukturu blockchainu, k čemu je určen, příklady použití.}
-
-\begin{center}
-\includegraphics[scale=0.7]{images/blockchain.png}
-\end{center}
-
-Slouží k uchovávání záznamů, které jsou chráněny proti neoprávněnému zásahu, pokusu o pozměnění dat. Umožňuje zajistit anonymitu operací. 
 
 \section{Známe číslo c,z,m a hledáme číslo e v následujícím vztahu: $c\equiv z^e (\mod m)$. O jaký matematický problém jde? Proč se jedná o matematický problém? O tento problém se opírá bezpečnost mnoha kryptografických systémů, uveďte alespoň jeden.}
 
@@ -416,6 +405,12 @@ Pravidlo novosti celého výroku -- Pokud část výroku je nová, poté celý v
     \item Logické formule se připojí k jednotlivým výrokům protokolu, jako tvrzení o stavu systému po každém výroku.
     \item Logické výchozí předpoklady se aplikují na předpoklady a tvrzení za účelem zjištění toho, v co věří jednotlivé strany protokolu.
 \end{enumerate}
+
+\section{Rabinův kryptosystém, uveďte postup volby parametrů, výpočet klíčů, postup pro šifrování a dešifrování, výhody-nevýhody.}
+
+\section{Asymetrický systém ECMQV: k čemu slouží, popis funkce systému, výhody.}
+
+\section{Vysvětlete princip Schnorova identifikačního a podpisového schématu.}
 
 \section{Uveďte ideový návrh kryptosystému:}
 \subsection{Pro autentizaci uživatelů přistupujících vzdáleně k serverové aplikaci. Popište kryptografické služby, které systém musí zajišťovat, uveďte kryptografické algoritmy, které lze využít.}
