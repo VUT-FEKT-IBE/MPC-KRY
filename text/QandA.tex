@@ -181,7 +181,8 @@ Entropie určuje míru náhodnosti, jak je složité předvídat hodnotu. Entrop
 
 \section{V čem spočívá hrozba využití „kvantových počítačů“ pro kryptografii, uveďte příklady.}
 
-TODO
+Kvantové počítače jsou schopny řešit problémy, které by byly pro klasické počítače neřešitelné. Například faktorizace velkých čísel(RSA), 
+diskrétní logaritmus(DH, ElGamal), bezpečnost hashovacích algoritmů\dots
 
 \section{Uveďte důvody použití kvantové distribuce klíčů (QKD). Jakým způsobem se u QKD informace přenáší, jaké jsou realizační problémy, popište princip protokolů BB84, EPR a COW. K čemu se využívá „kvantový přenos informace“. Uveďte důvody použití, příklady protokolů.}
 
@@ -220,9 +221,9 @@ Zdroj času musí být důvěryhodný tj. že musí být například synchronizo
 
 \textbf{Elektronický podpis}-- Certifikáty pro potvrzení identity osob, serverů nebo webových stránek. Slouží pro elektronickou komunikaci.
 
-\textbf{Zaručený elektronický podpis} -- Podpis se považuje za zaručení pokud poskytuje jedinečné identifikační údaje, kterého ho spojují s podepisující osobou.
+\textbf{Zaručený elektronický podpis} -- Podpis se považuje za zaručený pokud poskytuje jedinečné identifikační údaje, kterého ho spojují s podepisující osobou.
 
-\textbf{Kvalifikovaný elektronický podpis} -- Potvrzení o pravosti uznávaného elektronického podpisu, které bylo vydáno kvalifikovaným poskytovatel důvěryhodných služeb.
+\textbf{Kvalifikovaný elektronický podpis} -- Potvrzení o pravosti uznávaného elektronického podpisu, které bylo vydáno kvalifikovaným poskytovatelem důvěryhodných služeb.
 
 \textbf{Elektronická pečeť} -- Data v elektronické podobě, která jsou připojena k jiným datům v elektronické podobě nebo jsou s nimi logicky spojena s cílem zaručit původ a integritu.
 
@@ -407,10 +408,65 @@ Pravidlo novosti celého výroku -- Pokud část výroku je nová, poté celý v
 \end{enumerate}
 
 \section{Rabinův kryptosystém, uveďte postup volby parametrů, výpočet klíčů, postup pro šifrování a dešifrování, výhody-nevýhody.}
+\begin{itemize}
+    \item Asymetrický kryptosystém založen na výpočtu kvadratickýh reziduí, bepečnost založena na problému faktorizace celých čísel
+    \item Postup
+    \begin{enumerate}
+        \item Zvolí se 2 velká prvočísla \textit{p} a \textit{q}
+        \item Vypočteme součin $n=p*q$, který tvoří veřejný klíč
+        \item Šifrování  $c=m^2mod(n)$
+        \item Dešifrování
+        \begin{itemize}
+            \item $m_p=c^{\frac{1}{4}(p+1)}mod(p)$
+            \item $m_q=c^{\frac{1}{4}(q+1)}mod(q)$
+            \item  Pomocí rozšířeného euklidovského algoritmu nalezneme $y_p $ a $y_q$, kde platí $y_p*p+y_q*q=1$
+            \item Pomocí Čínské věty o zbytcích vyřešíme
+            \begin{gather}
+            r_1=(y_p*p*m_q+y_q*q*m_p) \\
+            r_2=n-r_1 \\
+            r_3=(y_p*p*m_q-y_q*q*m_p) \\
+            r_4=n-r_3
+            \end{gather}
+            , kde platí že jedno z r je původní zpráva m
+        \end{itemize}
+    \end{enumerate}
+    \item Výhody: Matematická složitost.
+    \item Nevýhody: Jakýkoli výstup kryptosystému může být generován 4 vstupy, větší složitost identifikace který z výstupů systému je správný.
+\end{itemize}
 
 \section{Asymetrický systém ECMQV: k čemu slouží, popis funkce systému, výhody.}
-
+\begin{itemize}
+    \item Výměna klíčů pomocí EC odvozená z DH
+    \item Bezpečnější než ECDH
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.5\linewidth]{images/ECMQV.png}
+        \caption{ECMQV}
+        \label{fig:enter-label}
+    \end{figure}
+\end{itemize}
 \section{Vysvětlete princip Schnorova identifikačního a podpisového schématu.}
+\begin{itemize}
+    \item \textbf{Schnorrovo identifikační schéma je protokol pro digitální identifikaci, využívá kryptografii založenou na diskrétním logaritmu.}
+    \begin{itemize}
+        \item Zero-knowledge protokol
+        \item Jednodouchá, efektivní, bezpečný
+        \item 3 fáze - Přípravná(generování klíčů), Identifikační(závazek, výzva, odpoveď), Verifikační(oveření znalosti soukromého klíče)
+        %\item Generování klíčů - parametry p - prvočíslo, q - porvočíselný dělitel p-1 a g - geenrátor podgrupy řádu q modulo p. Uživatel zvolí náhodné tajné číslo s - soukromý klíč. Veřejný klíč se dopočítá jako $v=g^s mod(p)$ 
+        %\item Závazek -zvolí random číslo r $R=g^rmod(p)$
+        %\item Výzva - verifikátor pošle náhodné číslo e 
+        %\item Odpověď - y=r-s*e mod(q)
+        %\item Verifikace -Oveření platnosti rovnice $g^y=R*v^emod(p)$
+    \end{itemize}
+    \item \textbf{Schnorrovo podpisové schéma}
+    \begin{itemize}
+        \item Jedná se o úpravu identifikačního schématu, kde výzva c je simulována hashem závazku R a zprávy m.
+        \item : Stejně jako u jiných implementací, i zde závisí bezpečnost na těžkosti problému diskrétního logaritmu
+        \item vhodné v prostředích, kde jsou preferovány modulární operace nad operacemi na eliptických křivkách z
+        důvodu dostupnosti nebo optimalizace hardwaru. Využití nachází např. v kryptoměnách, blockchain multipodpisová schémata IoT, apod.
+    \end{itemize}
+\end{itemize}
+
 
 \section{Uveďte ideový návrh kryptosystému:}
 \subsection{Pro autentizaci uživatelů přistupujících vzdáleně k serverové aplikaci. Popište kryptografické služby, které systém musí zajišťovat, uveďte kryptografické algoritmy, které lze využít.}
